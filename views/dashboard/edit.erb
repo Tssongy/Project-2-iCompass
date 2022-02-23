@@ -1,0 +1,16 @@
+<h1>Edit this homework</h1>
+
+<form action="/dashboard/<%= homework['id'] %>" method="POST">
+    <input type="hidden" name="_method" value="put">
+    
+    <label for="">Title: </label>
+    <input type="text" name="title" value="<%= homework['title'] %>">
+
+    <label for="">Description: </label>
+    <input type="text" name="description" value="<%= homework['description'] %>">
+
+    <button>save changes</button>
+    <form action="/">
+        <button>exit</button>
+    </form>
+</form>

@@ -1,31 +1,33 @@
-<% if role == 't'%>
-    <h1>Sign up as a Teacher</h1>
-<% else %>
-    <h1>Sign up as a Student</h1>
-<% end %>
+<main>
+    <% if role == 't'%>
+        <h1>Sign up as a Teacher</h1>
+    <% else %>
+        <h1>Sign up as a Student</h1>
+    <% end %>
 
-<form action="/users/<%= role %>" method="POST">
+    <form action="/users/<%= role %>" method="POST">
 
-    <label for="">First name: </label>
-    <input type="text" name="first_name">
+        <label for="">First name: </label>
+        <input type="text" name="first_name">
 
-    <label for="">Last name: </label>
-    <input type="text" name="last_name">
+        <label for="">Last name: </label>
+        <input type="text" name="last_name">
 
-    <label for="">Email: </label>
-    <input type="text" name="email">
+        <label for="">Email: </label>
+        <input type="text" name="email">
 
-    <label for="">Password: </label>
-    <input type="password" name="password">
+        <label for="">Password: </label>
+        <input type="password" name="password">
 
-    <label for="">Class: </label>
-    <select name="class_name">
-        <option value="5A">5A</option>
-        <option value="5B">5B</option>
-        <option value="5C">5C</option>
-        <option value="5D">5D</option>
-    </select>
+        <label for="">Class: </label>
+        <select name="class_name">
+            <option value="5A">5A</option>
+            <option value="5B">5B</option>
+            <option value="5C">5C</option>
+            <option value="5D">5D</option>
+        </select>
 
-    <button>Submit</button>
+        <button>Submit</button>
 
-</form>
+    </form>
+</main>

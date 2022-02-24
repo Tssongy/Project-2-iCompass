@@ -32,3 +32,11 @@ CREATE TABLE homework(
     description TEXT,
     assigned_class TEXT
 );
+
+CREATE TABLE submissions(
+    id SERIAL PRIMARY KEY,
+    homework_id INT,
+    student_id INT,
+    answer TEXT,
+    is_correct BOOLEAN
+);

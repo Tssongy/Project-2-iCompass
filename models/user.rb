@@ -23,6 +23,3 @@ def find_user_id_by_email(email)
     user_id = run_sql("SELECT id FROM users WHERE email = $1", [email]).to_a[0]['id'].to_i
 end
 
-def find_role_by_id(user_id)
-    role = run_sql("SELECT role FROM assignments WHERE user_id = $1", [user_id]).to_a[0]
-end

@@ -12,3 +12,9 @@ for (var i = 0; i < coll.length; i++) {
     }
   });
 }
+
+// var logoButton = document.querySelector('#logo-button')
+
+// logoButton.addEventListener("click", function() {
+  
+// })

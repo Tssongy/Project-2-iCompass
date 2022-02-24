@@ -59,3 +59,32 @@ delete '/dashboard/:id' do
     delete_homework(id)
     redirect '/'
 end
+
+post '/dashboard/:homework_id&:user_id/record' do
+    homework_id = params['homework_id']
+    student_id = params['user_id']
+    answer = params['answer']
+
+    record_submission(homework_id, student_id, answer)
+    redirect '/'
+end
+
+get '/dashboard/:homework_id/mark' do
+    homework_id = params['homework_id']
+    submissions = find_submissions(homework_id)
+    class_list = find_class_list_by_id(session['user_id'])
+    homework = find_homework_by_homework_id(homework_id)
+
+    erb :'submissions/new', locals: {
+        class_list: class_list,
+        submissions: submissions,
+        homework_id: homework_id,
+        homework: homework
+    }
+end
+
+# <% if submissions['student_id'].include?(student['id'])%>
+#     <span>View submission</span>
+# <% else%>
+#     <span>Not submitted</span>
+# <%end%>

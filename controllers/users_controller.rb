@@ -29,6 +29,8 @@ post '/users/:role' do
     class_name = params['class_name']
     user_id = find_user_id_by_email(email)
     create_assignment(user_id, class_name, role)
-    redirect '/'
+    erb :'users/complete', locals: {
+        role: role
+    }
   
 end

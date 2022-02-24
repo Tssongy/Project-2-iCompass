@@ -6,7 +6,7 @@ end
 
 def find_class_list_by_id(id)
 
-    users = run_sql("SELECT users.first_name, users.last_name, assignments.class_name FROM users JOIN assignments ON users.id = assignments.user_id WHERE assignments.class_name = (SELECT class_name FROM assignments WHERE user_id = $1)", [id]).to_a
+    users = run_sql("SELECT users.id, users.first_name, users.last_name, assignments.class_name FROM users JOIN assignments ON users.id = assignments.user_id WHERE assignments.class_name = (SELECT class_name FROM assignments WHERE user_id = $1) AND assignments.role = 's'", [id]).to_a
 
 end
 

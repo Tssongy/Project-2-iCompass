@@ -1,15 +1,23 @@
-<% if role == 't'%>
-    <h1>Login as a Teacher</h1>
-<% else %>
-    <h1>Log in as Student</h1>
-<% end %>
+<main>
+    <% if role == 't'%>
+        <h1>Login as a Teacher</h1>
+    <% else %>
+        <h1>Log in as Student</h1>
+    <% end %>
 
-<form action="/sessions/<%= role %>" method="POST">
-    <label for="">Email: </label>
-    <input type="text" name="email">
+    <section id='log-in'>
+        <form action="/sessions/<%= role %>" method="POST">
+            <label for="">Email: </label>
+            <input type="text" name="email">
 
-    <label for="">Password: </label>
-    <input type="password" name="password">
+            <label for="">Password: </label>
+            <input type="password" name="password">
 
-    <button>Log in</button>
-</form>
+            <button>Log in</button>
+        </form>
+        <h3>Don't have an account? Sign up <a href="/sign_up/<%= role %>">here</a></h3>
+    </section>
+    
+
+    
+</main>

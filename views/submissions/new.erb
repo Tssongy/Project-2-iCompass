@@ -1,0 +1,35 @@
+<h1>Mark answers submitted by your class</h1>
+
+<main>
+    <section>
+        <h1>Submissions</h1>
+        <ul>
+            <% class_list.each do |student|%>
+                <li>
+                    <%= student['first_name'] %> <%= student['last_name'] %>
+                    
+                        <% if has_submitted?(student['id'], homework_id) %>
+                            <button class="collapsible">View Submission</button>
+                            <div class="content">
+                                <h3>Question:</h3>
+                                <p><%= homework['description'] %></p>
+                                <h3>Answer: </h3>
+                                <p><%=find_answer_by_student_id(student['id'], homework_id)%></p>
+                                <% if !has_been_marked?(student['id'], homework_id)%>
+                                    <form action="/submissions/<%=student['id']%>&<%=homework_id%>/update" method="POST">
+                                        <input type="submit" name="correct" value="correct">
+                                        <input type="submit" name="incorrect" value="incorrect">
+                                    </form>
+                                <% else%>
+                                    <p>marked</p>
+                                <% end %>
+                            </div>
+                        <% else %>
+                            <span>Not submitted</span>
+                        <% end %>
+                    
+                </li>
+            <% end %>
+        </ul>
+    </section>
+</main>

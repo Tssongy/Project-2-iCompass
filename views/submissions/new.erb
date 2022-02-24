@@ -1,9 +1,24 @@
+<header id="greeting">
+        <nav>
+            <a href="/">
+                <img src="/imgs/spark.svg" alt="" id="logo">
+            </a>
+            <span class='logo'>SPARK</span>
+            
+            <div></div>
+            <h1 id="greeting-msg">Hello <%= current_user()['first_name']%> </h1>
+            <form action="/logout" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <button>Log out</button>
+            </form>
+        </nav>
+        
 
-
+        <h2>Class Dashboard(<%= class_list[0]['class_name'] %>)</h2>
+</header>
 <main>
-    <h1>Mark answers submitted by your class</h1>
     <section>
-        <h1>Submissions</h1>
+        <h2>Submissions</h2>
         <ul>
             <% class_list.each do |student|%>
                 <li>

@@ -1,99 +1,119 @@
 <% if logged_in? %>
-    
-
-
-
-    <main id="dashboard">
+    <header id="greeting">
         <nav>
+            <a href="/">
+                <img src="/imgs/spark.svg" alt="" id="logo">
+            </a>
+            <span class='logo'>SPARK</span>
+            
+            <div></div>
+            <h1 id="greeting-msg">Hello <%= current_user()['first_name']%> </h1>
             <form action="/logout" method="POST">
                 <input type="hidden" name="_method" value="delete">
                 <button>Log out</button>
             </form>
-            <h1>Hello <%= current_user()['first_name']%> </h1>
         </nav>
         
 
-        <h2>Class Dashboard(<%= class_list[0]['class_name'] %>)</h1>
-        <div class="cols">
+        <h2>Class Dashboard(<%= class_list[0]['class_name'] %>)</h2>
+    </header>
+
+
+    <main id="dashboard">
+        <section class="main-frame">
+
             
-            <% if role == 't'%>
-                <section id='class-list'>
-                    <h1>Class List</h1>
-                    <ul>
-                        <% class_list.each do |student| %>
-                            <li>
-                            <%= student['first_name'] %> <%= student['last_name'] %>
-                            </li>
-                        <% end %>
-                    </ul>
-                </section>
+                
+                <% if role == 't'%>
+                    <div class="cols">
+                        <section id='homework-list'>
+                            <h1>Homework</h1>
+                            <a href="/dashboard/<%= class_list[0]['class_name'] %>/new">Create Homework</a>
 
-                <section id='homework-list'>
-                    <h1>Homework</h1>
-                    <a href="/dashboard/<%= class_list[0]['class_name'] %>/new">Create Homework</a>
-
-                    <ul>
-                        <% homework_list.each do |homework|%>
-                            <li>
-                                <button type="button" class="collapsible">
-                                    <%= homework['title'] %>
-                                </button>
-                                <div class="content">
-                                    <p><%= homework['description'] %></p>
-                                    <a href="/dashboard/<%= homework['id'] %>/edit">Edit</a>
-                                    <a href="/dashboard/<%= homework['id'] %>/mark">Mark</a>
-                                    <%# Delete Homework %>
-                                    <form action="/dashboard/<%= homework['id'] %>" method="POST">
-                                        <input type="hidden" name="_method" value="delete">
-                                        <button>delete</button>
-                                    </form>
+                            <ol>
+                                <% homework_list.each do |homework|%>
+                                    <li>
+                                        <button type="button" class="collapsible">
+                                            <%= homework['title'] %>
+                                        </button>
+                                        <div class="content">
+                                            <p><%= homework['description'] %></p>
+                                            <a href="/dashboard/<%= homework['id'] %>/edit">Edit</a>
+                                            <a href="/dashboard/<%= homework['id'] %>/mark">Mark</a>
+                                            <%# Delete Homework %>
+                                            <form action="/dashboard/<%= homework['id'] %>" method="POST">
+                                                <input type="hidden" name="_method" value="delete">
+                                                <button>delete</button>
+                                            </form>
 
 
-                                </div>
-                            </li>
-                        <% end %>
-                    </ul>
-                </section>
+                                        </div>
+                                    </li>
+                                <% end %>
+                            </ol>
+                        </section>
+                        <div></div>
+                        <section id='class-list'>
+                            <h1>Students</h1>
+                            <ul>
+                                <% class_list.each do |student| %>
+                                    <li>
+                                    <%= student['first_name'] %> <%= student['last_name'] %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </section>
+
+                        </div>        
 
 
-            <% elsif role == 's'%>
-                <section id='outstanding-homework'>
-                    <h1>Homework</h1>
-                    <ul>
-                        <% homework_list.each do |homework|%>
-                            <li>
-                                <button type="button" class="collapsible">
-                                    <%= homework['title'] %>
-                                </button>
-                                <div class="content">
-                                    <p><%= homework['description'] %></p>
-                                    <% if has_submitted?(current_user()['id'], homework['id'])%>
-                                        <% if has_been_marked?(current_user()['id'], homework['id'])%>
-                                            <p>marked 
-                                            <span>
-                                                <%= display_mark(current_user()['id'], homework['id']) %>
-                                            </span>
-                                            </p>
+                <% elsif role == 's'%>
+                    <section id='homework-student'>
+                        <h1>Homework</h1>
+                        <ul>
+                            <% homework_list.each do |homework|%>
+                                <li>
+                                    <button type="button" class="collapsible">
+                                        <%= homework['title'] %>
+                                    </button>
+                                    <div class="content">
+                                        <p><%= homework['description'] %></p>
+                                        <% if has_submitted?(current_user()['id'], homework['id'])%>
+                                            <% if has_been_marked?(current_user()['id'], homework['id'])%>
+                                                <p>marked 
+                                                <% if display_mark(current_user()['id'], homework['id']) == 'correct'%>
+                                                    <span class="correct">
+                                                        <%= display_mark(current_user()['id'], homework['id']) %>
+                                                    </span>
+                                                <% else%>
+                                                    <span class="incorrect">
+                                                        <%= display_mark(current_user()['id'], homework['id']) %>
+                                                    </span>
+                                                <% end %>
+
+                                                
+                                                </p>
+                                            <% else %>
+                                                <p>submitted</p>
+                                            <% end %>
                                         <% else %>
-                                            <p>submitted</p>
+                                            <form action="/dashboard/<%= homework['id'] %>&<%= session['user_id']%>/record" method="POST">
+                                                <label for="">Answer: </label>
+                                                <input type="text" name="answer">
+
+                                                <button>submit</button>
+                                            </form>
                                         <% end %>
-                                    <% else %>
-                                        <form action="/dashboard/<%= homework['id'] %>&<%= session['user_id']%>/record" method="POST">
-                                            <label for="">Answer: </label>
-                                            <input type="text" name="answer">
+                                        
+                                    </div>
+                                </li>
+                            <% end %>
+                        </ul>
+                    </section>
 
-                                            <button>submit</button>
-                                        </form>
-                                    <% end %>
-                                    
-                                </div>
-                            </li>
-                        <% end %>
-                    </ul>
-                </section>
-
-            <% end %>
-        </div>
+                <% end %>
+            
+        </section>
     </main>
 
     
@@ -106,24 +126,34 @@
     
 
 <% else %>
+
+    <header>
+      <nav>
+        <a href="/">
+            <img src="/imgs/spark.svg" alt="" id="logo">
+        </a>
+        SPARK
+      </nav>
+    </header>
     
     <main id="select-user">
-        <h1>Welcome to iCompass</h1>
-        <section>
-            <a href="/login/t">
-                <button>
-                I am a teacher
-                </button>
-            </a>
-    
-            <a href="/login/s">
-                <button>
-                    I am a student
-                </button>
-            </a>
-        </section>
+        <div class="box">
+            <h1>LOG IN AS A</h1>
+            <section>
+                <a href="/login/t">
+                    <button>
+                    TEACHER
+                    </button>
+                </a>
         
+                <a href="/login/s">
+                    <button>
+                        STUDENT
+                    </button>
+                </a>
+            </section>
+        </div>
+  
     </main>
-    
 
 <% end %>

@@ -1,3 +1,19 @@
+<header id="greeting">
+        <nav>
+            <a href="/">
+                <img src="/imgs/spark.svg" alt="" id="logo">
+            </a>
+            <span class='logo'>SPARK</span>
+            
+            <div></div>
+            <h1 id="greeting-msg">Hello <%= current_user()['first_name']%> </h1>
+            <form action="/logout" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <button>Log out</button>
+            </form>
+        </nav>
+        
+</header>
 <main>
     <h1>Edit this homework</h1>
 

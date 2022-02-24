@@ -1,42 +1,144 @@
 body {
-    background-color: #F4FAFF;
-    font-family: 'Gideon Roman', cursive;
+    /* background-color: #F4FAFF; */
+    background: linear-gradient(#FAC898);
+    font-family: 'Concert One', cursive;
     margin: 0px;
+    background-image: linear-gradient(#FFFFFF, rgb(255, 122, 89));
 }
+
+#greeting h1, h2{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0vh;
+    margin-right: 5vh;
+}
+
+
+
+
+#greeting h2{
+    margin-left: 5vh;
+    border-bottom:1px solid white;
+    color: black;
+    padding-bottom: 1vh;
+}
+
+
+#greeting nav{
+    display:grid;
+    grid-template-columns: 1fr 1fr 10fr 10fr 5fr;
+    color: black;
+    margin-right: 5vh;
+    margin-left: 5vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0px
+}
+
+#greeting-msg{
+    color: #FF5349;
+}
+
+
+
 
 header nav{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    gap: 10vh;
-    border-bottom: 1px solid whitesmoke;
+    margin-left: 5vh;
+    font-family: 'Secular One', sans-serif;
+    font-size: 4vh;
 }
 
 #logo {
-    width: 12vh;
-    height: 12vh;
+    width: 10vh;
+    height: 10vh;
 }
+
+/* .box {
+    display: grid;
+    height: fit-content;
+    grid-template-rows: 1fr 3fr;
+    justify-content: center;
+    width:800px;
+    height: 80vh;
+    margin: auto;
+    border-radius: 1em;
+} */
+
+.box{
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1em;
+    background: rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    min-width: 50vh;
+    height: fit-content;
+    min-height: 55vh;
+    text-align: center;
+}
+
+.box section{
+    width: fit-content;
+}
+
+
 
 main {
     display: grid;
-    height: 80vh;
-    grid-template-rows: 1fr 2fr;
+    height: fit-content;
+    grid-template-rows: 1fr 3fr;
     justify-content: center;
-    width:1000px;
+    width:800px;
+    height: 80vh;
     margin: auto;
-    background: #FFD25A;
+    
 }
 
+button {
+    font-family: 'Concert One', cursive;
+}
+
+
 #select-user section {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    /* gap: 15px; */
+    text-align: center;
+    margin: 0px auto;
+}
+
+
+/* #select-user section a{
+    margin-left: 100px;
+} */
+
+#select-user section button {
+    width: 150px;
+    height: 100px;
+    border-radius: 0.5em;
+}
+
+#select-user a {
+    width: fit-content;
+}
+
+#select-user section h1, button {
+    margin-bottom: 5vh;
+}
+
+h1 {
+    font-size: 5vh;
 }
 
 #dashboard {
-    justify-content: center;
-    grid-template-rows: 1fr 1fr 10fr;
-    
+    display: grid;
+    /* justify-content: center; */
+    grid-template-rows: 2fr 0.5fr 10fr;
+    margin: 0px, auto;
+    margin-bottom: 10px;
 }
 
 #dashboard nav button{
@@ -50,32 +152,51 @@ main {
 
 #dashboard .cols {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: stretch;
+    height: fit-content;
 }
 
-#select-user a {
-    width: 15vh;
+#class-list{
+    border-left: 1px solid white;
+    padding-left: 5vh;
 }
+
+#homework-list{
+    text-align: center;
+}
+
+.cols h1{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 4vh;
+}
+
+li{
+    font-size: 2.5vh;
+}
+
 
 #select-user button {
-    width: 100%;
-    border-radius: 1em;
-    font-size: 1rem;
+    /* border-radius: 1em; */
+    border: none;
+    font-size: 2rem;
+    width: 100px;
+    background-color: #FBFBF8;
 }
 
 #select-user button:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: #F05E23; /* Green */
     color: white;
 }
 
-#log-in button {
+form button {
     margin-top: 15px;
     width: 50%;
     border-radius: 1em;
 }
 
-#log-in button:hover {
+form button:hover {
     background-color: #4CAF50; /* Green */
     color: white;
 }
@@ -87,12 +208,14 @@ main {
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
+    padding: 10px;
+    width: 30vh;
+    border-radius: 1em;
     text-align: left;
     outline: none;
     font-size: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 0px;
 }
   
   /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -102,9 +225,13 @@ main {
   
   /* Style the collapsible content. Note: hidden by default */
 .content {
-    padding: 0 18px;
+    font-size: 2vh;
+    padding: 2px 10px;
     display: none;
     overflow: hidden;
+    border-radius: 1em;
+    width: inherit;
+    /* height: fit-content; */
     background-color: #f1f1f1;
 }
 
@@ -114,6 +241,24 @@ form {
 }
 
 footer {
-    text-align: end;
+    text-align: center;
     border-top: 1px solid whitesmoke;
+}
+
+.correct{
+    color: green;
+}
+
+.incorrect{
+    color: red;
+}
+
+#homework-student{
+    display: grid;
+    justify-content: center;
+    width: 500px;
+}
+
+.content p{
+    width:100px;
 }

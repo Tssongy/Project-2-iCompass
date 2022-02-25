@@ -1,4 +1,4 @@
-# Full Stack App - iCompass
+# Full Stack App - SPARK
 *Link to the app: https://icompass.herokuapp.com/
 
 ## Description:
@@ -14,7 +14,15 @@ A central hub for school teachers and students where academic performance, weekl
 ## My plan / approach
 
 ## Cool tech that I used
+1. Javascript - Collapsible button
+2. Ruby
+3. Sinatra
+4. Heroku
 
 ## Lessons I learned
 
 ## Features to add in future
+- Sign up verification to avoid duplicate accounts
+- 'Performance' feature to dashboard displaying overall academic performance.
+- Timetable feature
+- Use of API to generate random questions as homework

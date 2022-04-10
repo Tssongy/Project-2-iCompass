@@ -1,4 +1,4 @@
-# Full Stack App - SPARK
+# Full Stack App
 *Link to the app: https://icompass.herokuapp.com/
 
 ## Description:
